@@ -7,7 +7,6 @@
 
   <meta name="description" content="Studio RJL is a multidisciplinary design studio crafting bespoke brandscapes that become places.">
 
-  <!-- Altesse-style fallback (since custom fonts need hosting) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 
   <style>
@@ -18,14 +17,10 @@
       --ivory: #eae4da;
       --dark: #261e10;
       --hover: #a36a29;
+      --cursor-hover: #806829;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      cursor: none;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; cursor:none; }
 
     body {
       background: var(--ivory);
@@ -35,173 +30,131 @@
     }
 
     body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-      opacity: 0.08;
-      pointer-events: none;
+      content:"";
+      position:fixed;
+      inset:0;
+      background:url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      opacity:0.08;
+      pointer-events:none;
     }
 
     .cursor {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--primary);
-      position: fixed;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
+      width:14px; height:14px; border-radius:50%;
+      background:var(--primary);
+      position:fixed; pointer-events:none;
+      transform:translate(-50%,-50%);
+      z-index:9999; transition: background 0.2s ease;
     }
+
+    .cursor.link-hover { background: var(--cursor-hover); }
 
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 24px 40px;
-      font-size: 12px;
-      background: rgba(234,228,218,0.6);
-      backdrop-filter: blur(6px);
-      z-index: 10;
+      position:fixed; top:0; width:100%;
+      display:flex; justify-content:space-between;
+      padding:24px 40px; font-size:12px;
+      background:rgba(234,228,218,0.6);
+      backdrop-filter:blur(6px); z-index:10;
     }
 
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      margin-left: 24px;
-      transition: 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--hover);
-      text-decoration: underline;
-    }
+    nav a { text-decoration:none; color:var(--text); margin-left:24px; }
+    nav a:hover { color:var(--hover); text-decoration:underline; }
 
     .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 20px;
+      height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
     }
 
-    .hero img {
-      width: 120px;
-      opacity: 0.9;
-    }
-
-    .hero p {
-      font-size: 12px;
-      margin-top: 16px;
-      opacity: 0.7;
-    }
+    .hero img { width:120px; }
+    .hero p { font-size:12px; margin-top:16px; opacity:0.7; }
 
     .signature {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 18px;
-      color: var(--gold);
-      margin-top: 40px;
-      opacity: 0.8;
+      font-family:'Playfair Display',serif;
+      font-style:italic; font-size:18px;
+      color:var(--gold); margin-top:40px; opacity:0.8;
     }
 
-    section {
-      padding: 140px 10%;
-    }
+    section { padding:140px 10%; }
 
-    h2 {
-      font-size: 14px;
-      letter-spacing: 1px;
-      margin-bottom: 30px;
-    }
+    h2 { font-size:14px; letter-spacing:1px; margin-bottom:30px; }
 
     .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 60px;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:60px;
     }
 
     .project {
-      background: var(--ivory);
-      padding: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1.2s ease;
+      background:var(--ivory); padding:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+      opacity:0; transform:translateY(40px);
+      transition:all 1.2s ease;
     }
 
     .project img {
-      width: 100%;
-      display: block;
-      transition: transform 0.6s ease, filter 0.6s ease;
+      width:100%; display:block;
+      transition:transform 0.6s ease, filter 0.6s ease;
     }
 
-    .project:hover img {
-      transform: scale(1.03);
-      filter: contrast(1.05);
-    }
+    .project:hover img { transform:scale(1.03); filter:contrast(1.05); }
 
-    .caption {
-      font-size: 11px;
-      margin-top: 8px;
-      opacity: 0.6;
-    }
-
-    .project.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .caption { font-size:11px; margin-top:8px; opacity:0.6; }
+    .project.visible { opacity:1; transform:translateY(0); }
 
     .about {
-      max-width: 900px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      max-width:900px; margin:auto;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:60px; align-items:center;
+    }
+
+    .about-image {
+      position:relative;
+    }
+
+    .about-image::before {
+      content:"";
+      position:absolute;
+      top:20px; left:20px;
+      width:100%; height:100%;
+      background:var(--ivory);
+      z-index:-1;
+      box-shadow:0 10px 40px rgba(0,0,0,0.08);
     }
 
     .about img {
-      width: 100%;
+      width:100%;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all 1.2s ease;
     }
 
-    .about p {
-      line-height: 1.9;
-      font-size: 14px;
+    .about img.visible {
+      opacity:1;
+      transform:translateY(0);
     }
+
+    .about p { line-height:1.9; font-size:14px; }
 
     .dark-section {
-      background: var(--dark);
-      color: var(--ivory);
-      text-align: center;
-    }
-
-    .dark-section p {
-      max-width: 500px;
-      margin: auto;
-      margin-bottom: 20px;
+      background:var(--dark);
+      color:var(--ivory);
+      text-align:center;
     }
 
     .dark-section a {
-      display: inline-block;
-      padding: 12px 28px;
-      border: 1px solid var(--ivory);
-      color: var(--ivory);
-      text-decoration: none;
-      border-radius: 8px;
+      display:inline-block;
+      padding:12px 28px;
+      border:1px solid var(--ivory);
+      color:var(--ivory);
+      text-decoration:none;
+      border-radius:8px;
+      transition:0.3s ease;
+    }
+
+    .dark-section a:hover {
+      background:var(--ivory);
+      color:var(--dark);
     }
 
     footer {
-      text-align: center;
-      font-size: 11px;
-      padding: 40px 20px;
-      opacity: 0.6;
+      text-align:center; font-size:11px;
+      padding:40px 20px; opacity:0.6;
     }
 
   </style>
@@ -223,22 +176,24 @@
   <div>
     <img src="RJL_green_transparent.png" alt="studio rjl monogram">
     <p>crafting bespoke brandscapes that become places</p>
-    <div class="signature">Selected Works</div>
+    <div class="signature">Design Studio</div>
   </div>
 </div>
 
 <section id="projects">
   <h2>Selected Works</h2>
   <div class="projects">
-    <div class="project"><img src="RJL INTRO.png"><div class="caption">About Me</div></div>
-    <div class="project"><img src="Studio61_03.png"><div class="caption">Interior Study</div></div>
-    <div class="project"><img src="Florah.png"><div class="caption">Brandscape</div></div>
+    <div class="project"><img src="Studio61_alt2.png"><div class="caption"></div></div>
+    <div class="project"><img src="Florah.png"><div class="caption"></div></div>
+    <div class="project"><img src="Studio61_03.png"><div class="caption"></div></div>
   </div>
 </section>
 
 <section id="about">
   <div class="about">
-    <img src="RJL INTRO.png" alt="Rebekah Jane portrait">
+    <div class="about-image">
+      <img src="RJL INTRO.png" alt="Rebekah Jane portrait" class="fade">
+    </div>
     <p>
       Studio RJL is a multidisciplinary design studio crafting bespoke brandscapes that become places.<br><br>
       Rebekah Jane has worked across architecture, landscapes, interiors, objects & visual identities.<br><br>
@@ -256,7 +211,7 @@
 </section>
 
 <footer>
-  © 2026 studio rjl · created on country
+  © 2026 studio rjl ·
 </footer>
 
 <script>
@@ -266,7 +221,15 @@
     cursor.style.top = e.clientY + 'px';
   });
 
+  // cursor hover effect
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('mouseenter', () => cursor.classList.add('link-hover'));
+    link.addEventListener('mouseleave', () => cursor.classList.remove('link-hover'));
+  });
+
   const projects = document.querySelectorAll('.project');
+  const aboutImg = document.querySelector('.about img');
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
@@ -276,6 +239,7 @@
   });
 
   projects.forEach(p => observer.observe(p));
+  observer.observe(aboutImg);
 </script>
 
 </body>
