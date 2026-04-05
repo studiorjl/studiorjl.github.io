@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>studio RJL</title>
+  <title>studio rjl</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <!-- SEO -->
+  <meta name="description" content="Studio RJL is a multidisciplinary design studio crafting bespoke brandscapes that become places.">
 
   <style>
     :root {
@@ -14,8 +14,7 @@
       --gold: #806829;
       --text: #261e10;
       --ivory: #eae4da;
-      --deep-red: #451713;
-      --hover: #a36a29; /* adjusted to valid hex */
+      --hover: #a36a29;
     }
 
     * {
@@ -28,11 +27,10 @@
     body {
       background: var(--ivory);
       color: var(--text);
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Courier New', monospace;
       overflow-x: hidden;
     }
 
-    /* grain overlay */
     body::after {
       content: "";
       position: fixed;
@@ -41,11 +39,10 @@
       width: 100%;
       height: 100%;
       background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-      opacity: 0.12;
+      opacity: 0.1;
       pointer-events: none;
     }
 
-    /* Custom Cursor */
     .cursor {
       width: 14px;
       height: 14px;
@@ -57,7 +54,6 @@
       z-index: 9999;
     }
 
-    /* Navigation */
     nav {
       position: fixed;
       top: 0;
@@ -65,7 +61,6 @@
       display: flex;
       justify-content: space-between;
       padding: 24px 40px;
-      font-family: 'Courier New', monospace;
       font-size: 12px;
       background: rgba(234,228,218,0.6);
       backdrop-filter: blur(6px);
@@ -84,7 +79,6 @@
       text-decoration: underline;
     }
 
-    /* Hero */
     .hero {
       height: 100vh;
       display: flex;
@@ -99,17 +93,21 @@
     }
 
     .hero p {
-      font-family: 'Courier New', monospace;
       font-size: 12px;
       margin-top: 16px;
-      opacity: 0.6;
+      opacity: 0.7;
     }
 
     section {
       padding: 120px 8%;
     }
 
-    /* Projects */
+    h2 {
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -119,7 +117,7 @@
     .project {
       background: var(--ivory);
       padding: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       opacity: 0;
       transform: translateY(40px);
       transition: all 1.2s ease;
@@ -131,7 +129,6 @@
     }
 
     .caption {
-      font-family: 'Courier New', monospace;
       font-size: 11px;
       margin-top: 6px;
       opacity: 0.6;
@@ -142,45 +139,55 @@
       transform: translateY(0);
     }
 
-    /* Headings now Courier */
-    h2 {
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+    .about {
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
     }
 
-    .about {
-      max-width: 700px;
-      margin: auto;
-      text-align: center;
+    .about img {
+      width: 100%;
     }
 
     .about p {
       line-height: 1.8;
-      font-size: 15px;
-      font-style: italic;
+      font-size: 14px;
     }
 
-    .book {
+    .cta {
       text-align: center;
+      padding: 120px 8%;
     }
 
-    .book a {
+    .cta p {
+      max-width: 500px;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .cta a {
       display: inline-block;
-      margin-top: 20px;
       padding: 12px 28px;
       border: 1px solid var(--primary);
       text-decoration: none;
       color: var(--primary);
       border-radius: 8px;
-      font-family: 'Courier New', monospace;
       transition: 0.4s ease;
     }
 
-    .book a:hover {
+    .cta a:hover {
       background: var(--primary);
       color: var(--ivory);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 11px;
+      padding: 40px 20px;
+      opacity: 0.6;
     }
 
   </style>
@@ -190,7 +197,7 @@
 <div class="cursor"></div>
 
 <nav>
-  <div>studio RJL</div>
+  <div>studio rjl</div>
   <div>
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
@@ -200,8 +207,7 @@
 
 <div class="hero">
   <div>
-    <!-- Hero PNG -->
-    <img src="RJL_green_transparent.png" alt="monogram">
+    <img src="RJL_green_transparent.png" alt="studio rjl monogram">
     <p>crafting bespoke brandscapes that become places</p>
   </div>
 </div>
@@ -217,19 +223,26 @@
 
 <section id="about">
   <div class="about">
-    <h2>About</h2>
+    <img src="RJL INTRO.png" alt="Rebekah Jane portrait">
     <p>
-      I craft bespoke brandscapes that feel like places. Atmosphere-led, sensory-rich environments where identity is felt.
+      Studio RJL is a multidisciplinary design studio crafting bespoke brandscapes that become places.<br><br>
+      Rebekah Jane has worked across architecture, landscapes, interiors, objects & visual identities.<br><br>
+      Her work is guided by a deep love for natural materials and shaped by a refined sensory experience in tone, texture and gesture.<br><br>
+      She designs environments, both physical and digital, as places with atmosphere, resonance and a sense of elevated whimsy.
     </p>
   </div>
 </section>
 
-<section id="book">
-  <div class="book">
-    <h2>Book</h2>
-    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0MBxtDccYFfgN_GFlpT0uKReKg6tT77itlql8P3FYlpj9yTO84euJmikEFJSvAJy88fNNJgT3t" target="_blank">Book a free discovery call</a>
-  </div>
+<section class="cta" id="book">
+  <p>
+    For those seeking a brand that feels like a place — immersive, refined, and deeply resonant.
+  </p>
+  <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0MBxtDccYFfgN_GFlpT0uKReKg6tT77itlql8P3FYlpj9yTO84euJmikEFJSvAJy88fNNJgT3t" target="_blank">Book a discovery call</a>
 </section>
+
+<footer>
+  © 2026 studio rjl · "
+</footer>
 
 <script>
   const cursor = document.querySelector('.cursor');
