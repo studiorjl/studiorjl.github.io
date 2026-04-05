@@ -29,7 +29,6 @@
       overflow-x: hidden;
     }
 
-    /* subtle moving light */
     .light-leak {
       position: fixed;
       inset: 0;
@@ -76,6 +75,7 @@
 
     .hero {
       height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
+      padding: 0 20px;
     }
 
     .hero img {
@@ -84,11 +84,13 @@
       animation: fadeIn 2s ease forwards;
     }
 
-    @keyframes fadeIn {
-      to { opacity:1; }
-    }
+    @keyframes fadeIn { to { opacity:1; } }
 
-    .hero p { font-size:12px; margin-top:16px; opacity:0.7; }
+    .hero p {
+      font-size:12px;
+      margin-top:16px;
+      opacity:0.7;
+    }
 
     .signature {
       font-family:'Playfair Display',serif;
@@ -189,6 +191,30 @@
       padding:40px 20px; opacity:0.6;
     }
 
+    /* MOBILE REFINEMENT */
+    @media (max-width: 768px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-text {
+        order: 1;
+      }
+
+      .about-image {
+        order: 2;
+        margin: 20px 0;
+      }
+
+      .about p {
+        order: 3;
+      }
+
+      .hero p {
+        font-size: 12px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -208,13 +234,16 @@
 <div class="hero">
   <div>
     <img src="RJL_green_transparent.png" alt="studio rjl monogram">
-    <p>crafting bespoke brandscapes that become places</p>
+    <p>
+      crafting bespoke brandscapes<br>
+      <em></em>that become places</em>
+    </p>
     <div class="signature type" data-text="design studio"></div>
   </div>
 </div>
 
 <section id="projects">
-  <h2>Selected Works</h2>
+  <h2></h2>
   <div class="projects">
     <div class="project"><img src="Studio61_03.png"><div class="caption"></div></div>
     <div class="project"><img src="Florah.png"><div class="caption"></div></div>
@@ -224,17 +253,17 @@
 
 <section id="about">
   <div class="about">
-    <div class="about-image">
-      <img src="RJL INTRO.png" alt="Rebekah Jane portrait">
-    </div>
     <div class="about-text">
       <h3 class="type" data-text="about studio rjl"></h3>
       <p>
-        Studio RJL is a multidisciplinary design studio crafting bespoke brandscapes that become places.<br><br>
+        Studio RJL is a multidisciplinary design studio crafting brands that have a unique spatial essence.<br><br>
         Rebekah Jane has worked across architecture, landscapes, interiors, objects & visual identities.<br><br>
-        Her work is guided by a deep love for natural materials and shaped by a refined sensory experience in tone, texture and gesture.<br><br>
-        She designs environments as places with atmosphere, resonance and a sense of elevated whimsy.
+        Her work is guided by a deep love for nature & materials and is shaped by a refined sensory experience in tone, texture and gesture.<br><br>
+        She designs brands like she would create a place; with atmosphere, resonance and a sense of elevated whimsy.
       </p>
+    </div>
+    <div class="about-image">
+      <img src="RJL INTRO.png" alt="Rebekah Jane portrait">
     </div>
   </div>
 </section>
@@ -248,7 +277,7 @@
 </section>
 
 <footer>
-  © 2026 studio rjl
+  © 2026 studio rjl · created on country
 </footer>
 
 <script>
@@ -272,7 +301,6 @@
   document.querySelectorAll('.project').forEach(p => observer.observe(p));
   observer.observe(document.querySelector('.about img'));
 
-  // typing effect
   document.querySelectorAll('.type').forEach(el => {
     const text = el.dataset.text;
     let i = 0;
