@@ -29,18 +29,13 @@
       overflow-x: hidden;
     }
 
+    /* softened light (no movement now) */
     .light-leak {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15), transparent 60%);
-      animation: drift 12s ease-in-out infinite alternate;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), transparent 60%);
       pointer-events: none;
-      opacity: 0.4;
-    }
-
-    @keyframes drift {
-      0% { transform: translate(0,0); }
-      100% { transform: translate(40px, 60px); }
+      opacity: 0.3;
     }
 
     body::after {
@@ -70,12 +65,20 @@
       backdrop-filter:blur(6px); z-index:10;
     }
 
+    nav div:first-child {
+      color: var(--gold);
+    }
+
     nav a { text-decoration:none; color:var(--text); margin-left:24px; }
     nav a:hover { color:var(--hover); text-decoration:underline; }
 
     .hero {
       height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
       padding: 0 20px;
+    }
+
+    .hero-inner {
+      transform: translateY(-20px);
     }
 
     .hero img {
@@ -92,15 +95,16 @@
       opacity:0.7;
     }
 
+    .hero em { font-style: italic; }
+
     .signature {
       font-family:'Playfair Display',serif;
       font-style:italic; font-size:18px;
-      color:var(--gold); margin-top:40px;
+      color:var(--gold);
+      margin-bottom:10px;
     }
 
     section { padding:140px 10%; }
-
-    h2 { font-size:14px; letter-spacing:1px; margin-bottom:30px; }
 
     .projects {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:60px;
@@ -126,29 +130,8 @@
     .about {
       max-width:900px; margin:auto;
       display:grid; grid-template-columns:1fr 1fr;
-      gap:60px; align-items:center;
+      gap:60px; align-items:start;
     }
-
-    .about-image { position:relative; }
-
-    .about-image::before {
-      content:"";
-      position:absolute;
-      top:20px; left:20px;
-      width:100%; height:100%;
-      background:var(--ivory);
-      z-index:-1;
-      box-shadow:0 10px 40px rgba(0,0,0,0.08);
-    }
-
-    .about img {
-      width:100%;
-      opacity:0;
-      transform:translateY(20px);
-      transition:all 1.2s ease;
-    }
-
-    .about img.visible { opacity:1; transform:translateY(0); }
 
     .about-text h3 {
       font-family:'Playfair Display', serif;
@@ -159,6 +142,19 @@
 
     .about p { line-height:1.9; font-size:13px; }
 
+    .about-image {
+      margin-top:20px;
+    }
+
+    .about-image img {
+      width:100%;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all 1.2s ease;
+    }
+
+    .about-image img.visible { opacity:1; transform:translateY(0); }
+
     .dark-section {
       background:var(--dark);
       color:var(--ivory);
@@ -168,7 +164,7 @@
     .dark-section p {
       max-width:500px;
       margin: auto;
-      margin-bottom:40px;
+      margin-bottom:60px;
     }
 
     .dark-section a {
@@ -191,28 +187,8 @@
       padding:40px 20px; opacity:0.6;
     }
 
-    /* MOBILE REFINEMENT */
     @media (max-width: 768px) {
-      .about {
-        grid-template-columns: 1fr;
-      }
-
-      .about-text {
-        order: 1;
-      }
-
-      .about-image {
-        order: 2;
-        margin: 20px 0;
-      }
-
-      .about p {
-        order: 3;
-      }
-
-      .hero p {
-        font-size: 12px;
-      }
+      .about { grid-template-columns: 1fr; }
     }
 
   </style>
@@ -232,22 +208,21 @@
 </nav>
 
 <div class="hero">
-  <div>
+  <div class="hero-inner">
     <img src="RJL_green_transparent.png" alt="studio rjl monogram">
-    <p>
-      crafting bespoke brandscapes<br>
-      <em></em>that become places</em>
-    </p>
+
     <div class="signature type" data-text="design studio"></div>
+
+    <p class="type" data-text="crafting bespoke brandscapes"></p>
+    <p><em>that become places</em></p>
   </div>
 </div>
 
 <section id="projects">
-  <h2></h2>
   <div class="projects">
-    <div class="project"><img src="Studio61_03.png"><div class="caption"></div></div>
-    <div class="project"><img src="Florah.png"><div class="caption"></div></div>
-    <div class="project"><img src="Studio61_alt2.png"><div class="caption"></div></div>
+    <div class="project"><img src="Studio61_03.png"></div>
+    <div class="project"><img src="Florah.png"></div>
+    <div class="project"><img src="Studio61_alt2.png"></div>
   </div>
 </section>
 
@@ -256,14 +231,18 @@
     <div class="about-text">
       <h3 class="type" data-text="about studio rjl"></h3>
       <p>
-        Studio RJL is a multidisciplinary design studio crafting brands that have a unique spatial essence.<br><br>
-        Rebekah Jane has worked across architecture, landscapes, interiors, objects & visual identities.<br><br>
+        Studio RJL is a multidisciplinary design studio crafting brands that have a unique spatial essence.
+      </p>
+
+      <div class="about-image">
+        <img src="RJL INTRO.png" alt="Rebekah Jane portrait">
+      </div>
+
+      <p>
+        Rebekah has worked across architecture, landscapes, interiors, objects & visual identities.<br><br>
         Her work is guided by a deep love for nature & materials and is shaped by a refined sensory experience in tone, texture and gesture.<br><br>
         She designs brands like she would create a place; with atmosphere, resonance and a sense of elevated whimsy.
       </p>
-    </div>
-    <div class="about-image">
-      <img src="RJL INTRO.png" alt="Rebekah Jane portrait">
     </div>
   </div>
 </section>
@@ -277,7 +256,7 @@
 </section>
 
 <footer>
-  © 2026 studio rjl · created on country
+  © 2026 studio rjl
 </footer>
 
 <script>
@@ -299,7 +278,7 @@
   });
 
   document.querySelectorAll('.project').forEach(p => observer.observe(p));
-  observer.observe(document.querySelector('.about img'));
+  observer.observe(document.querySelector('.about-image img'));
 
   document.querySelectorAll('.type').forEach(el => {
     const text = el.dataset.text;
