@@ -225,3 +225,67 @@
 <section id="about">
   <div class="about">
     <div class="about-image">
+      <img src="RJL INTRO.png" alt="Rebekah Jane portrait">
+    </div>
+    <div class="about-text">
+      <h3 class="type" data-text="about studio rjl"></h3>
+      <p>
+        Studio RJL is a multidisciplinary design studio crafting bespoke brandscapes that become places.<br><br>
+        Rebekah Jane has worked across architecture, landscapes, interiors, objects & visual identities.<br><br>
+        Her work is guided by a deep love for natural materials and shaped by a refined sensory experience in tone, texture and gesture.<br><br>
+        She designs environments as places with atmosphere, resonance and a sense of elevated whimsy.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section" id="book">
+  <p>
+        For those seeking a brand that feels like a place<br><br>
+        — <em>immersive, refined, and deeply resonant</em>
+  </p>
+  <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0MBxtDccYFfgN_GFlpT0uKReKg6tT77itlql8P3FYlpj9yTO84euJmikEFJSvAJy88fNNJgT3t" target="_blank">Book a discovery call</a>
+</section>
+
+<footer>
+  © 2026 studio rjl
+</footer>
+
+<script>
+  const cursor = document.querySelector('.cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('mouseenter', () => cursor.classList.add('link-hover'));
+    link.addEventListener('mouseleave', () => cursor.classList.remove('link-hover'));
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    });
+  });
+
+  document.querySelectorAll('.project').forEach(p => observer.observe(p));
+  observer.observe(document.querySelector('.about img'));
+
+  // typing effect
+  document.querySelectorAll('.type').forEach(el => {
+    const text = el.dataset.text;
+    let i = 0;
+    function type(){
+      if(i < text.length){
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 60);
+      }
+    }
+    type();
+  });
+</script>
+
+</body>
+</html>
