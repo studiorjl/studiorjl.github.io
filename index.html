@@ -29,6 +29,21 @@
       overflow-x: hidden;
     }
 
+    /* subtle moving light */
+    .light-leak {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15), transparent 60%);
+      animation: drift 12s ease-in-out infinite alternate;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    @keyframes drift {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(40px, 60px); }
+    }
+
     body::after {
       content:"";
       position:fixed;
@@ -63,13 +78,22 @@
       height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
     }
 
-    .hero img { width:120px; }
+    .hero img {
+      width:240px;
+      opacity:0;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity:1; }
+    }
+
     .hero p { font-size:12px; margin-top:16px; opacity:0.7; }
 
     .signature {
       font-family:'Playfair Display',serif;
       font-style:italic; font-size:18px;
-      color:var(--gold); margin-top:40px; opacity:0.8;
+      color:var(--gold); margin-top:40px;
     }
 
     section { padding:140px 10%; }
@@ -103,9 +127,7 @@
       gap:60px; align-items:center;
     }
 
-    .about-image {
-      position:relative;
-    }
+    .about-image { position:relative; }
 
     .about-image::before {
       content:"";
@@ -124,17 +146,27 @@
       transition:all 1.2s ease;
     }
 
-    .about img.visible {
-      opacity:1;
-      transform:translateY(0);
+    .about img.visible { opacity:1; transform:translateY(0); }
+
+    .about-text h3 {
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      color:var(--gold);
+      margin-bottom:20px;
     }
 
-    .about p { line-height:1.9; font-size:14px; }
+    .about p { line-height:1.9; font-size:13px; }
 
     .dark-section {
       background:var(--dark);
       color:var(--ivory);
       text-align:center;
+    }
+
+    .dark-section p {
+      max-width:500px;
+      margin: auto;
+      margin-bottom:40px;
     }
 
     .dark-section a {
@@ -161,6 +193,7 @@
 </head>
 <body>
 
+<div class="light-leak"></div>
 <div class="cursor"></div>
 
 <nav>
@@ -176,71 +209,19 @@
   <div>
     <img src="RJL_green_transparent.png" alt="studio rjl monogram">
     <p>crafting bespoke brandscapes that become places</p>
-    <div class="signature">Design Studio</div>
+    <div class="signature type" data-text="design studio"></div>
   </div>
 </div>
 
 <section id="projects">
   <h2>Selected Works</h2>
   <div class="projects">
-    <div class="project"><img src="Studio61_alt2.png"><div class="caption"></div></div>
-    <div class="project"><img src="Florah.png"><div class="caption"></div></div>
-    <div class="project"><img src="Studio61_03.png"><div class="caption"></div></div>
+    <div class="project"><img src="RJL INTRO.png"><div class="caption">About Me</div></div>
+    <div class="project"><img src="Studio61_03.png"><div class="caption">Interior Study</div></div>
+    <div class="project"><img src="Florah.png"><div class="caption">Brandscape</div></div>
   </div>
 </section>
 
 <section id="about">
   <div class="about">
     <div class="about-image">
-      <img src="RJL INTRO.png" alt="Rebekah Jane portrait" class="fade">
-    </div>
-    <p>
-      Studio RJL is a multidisciplinary design studio crafting bespoke brandscapes that become places.<br><br>
-      Rebekah Jane has worked across architecture, landscapes, interiors, objects & visual identities.<br><br>
-      Her work is guided by a deep love for natural materials and shaped by a refined sensory experience in tone, texture and gesture.<br><br>
-      She designs environments as places with atmosphere, resonance and a sense of elevated whimsy.
-    </p>
-  </div>
-</section>
-
-<section class="dark-section" id="book">
-  <p>
-    For those seeking a brand that feels like a place — immersive, refined, and deeply resonant.<br><br>
-  </p>
-  <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0MBxtDccYFfgN_GFlpT0uKReKg6tT77itlql8P3FYlpj9yTO84euJmikEFJSvAJy88fNNJgT3t" target="_blank">Book a discovery call</a>
-</section>
-
-<footer>
-  © 2026 studio rjl ·
-</footer>
-
-<script>
-  const cursor = document.querySelector('.cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-
-  // cursor hover effect
-  document.querySelectorAll('a').forEach(link => {
-    link.addEventListener('mouseenter', () => cursor.classList.add('link-hover'));
-    link.addEventListener('mouseleave', () => cursor.classList.remove('link-hover'));
-  });
-
-  const projects = document.querySelectorAll('.project');
-  const aboutImg = document.querySelector('.about img');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-      }
-    });
-  });
-
-  projects.forEach(p => observer.observe(p));
-  observer.observe(aboutImg);
-</script>
-
-</body>
-</html>
