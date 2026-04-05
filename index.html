@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Studio RJL</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -14,6 +15,7 @@
       --text: #261e10;
       --ivory: #eae4da;
       --deep-red: #451713;
+      --hover: #a36a29; /* adjusted to valid hex */
     }
 
     * {
@@ -26,7 +28,7 @@
     body {
       background: var(--ivory);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Open Sans', sans-serif;
       overflow-x: hidden;
     }
 
@@ -39,10 +41,11 @@
       width: 100%;
       height: 100%;
       background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-      opacity: 0.15;
+      opacity: 0.12;
       pointer-events: none;
     }
 
+    /* Custom Cursor */
     .cursor {
       width: 14px;
       height: 14px;
@@ -54,6 +57,7 @@
       z-index: 9999;
     }
 
+    /* Navigation */
     nav {
       position: fixed;
       top: 0;
@@ -72,8 +76,15 @@
       text-decoration: none;
       color: var(--text);
       margin-left: 24px;
+      transition: 0.3s ease;
     }
 
+    nav a:hover {
+      color: var(--hover);
+      text-decoration: underline;
+    }
+
+    /* Hero */
     .hero {
       height: 100vh;
       display: flex;
@@ -82,16 +93,15 @@
       text-align: center;
     }
 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 56px;
-      letter-spacing: 2px;
+    .hero img {
+      width: 120px;
+      opacity: 0.9;
     }
 
     .hero p {
       font-family: 'Courier New', monospace;
       font-size: 12px;
-      margin-top: 10px;
+      margin-top: 16px;
       opacity: 0.6;
     }
 
@@ -99,19 +109,19 @@
       padding: 120px 8%;
     }
 
+    /* Projects */
     .projects {
-      position: relative;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
     }
 
     .project {
-      position: relative;
-      width: 300px;
-      margin: 60px auto;
       background: var(--ivory);
       padding: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transform: rotate(var(--rotate));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       opacity: 0;
+      transform: translateY(40px);
       transition: all 1.2s ease;
     }
 
@@ -129,23 +139,21 @@
 
     .project.visible {
       opacity: 1;
-      transform: rotate(var(--rotate)) translateY(0);
+      transform: translateY(0);
     }
 
-    .project:nth-child(1) { --rotate: -1deg; }
-    .project:nth-child(2) { --rotate: 1.5deg; }
-    .project:nth-child(3) { --rotate: -0.5deg; }
+    /* Headings now Courier */
+    h2 {
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
 
     .about {
       max-width: 700px;
       margin: auto;
       text-align: center;
-    }
-
-    .about h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      margin-bottom: 20px;
     }
 
     .about p {
@@ -158,11 +166,6 @@
       text-align: center;
     }
 
-    .book h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--gold);
-    }
-
     .book a {
       display: inline-block;
       margin-top: 20px;
@@ -170,6 +173,8 @@
       border: 1px solid var(--primary);
       text-decoration: none;
       color: var(--primary);
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
       transition: 0.4s ease;
     }
 
@@ -185,7 +190,7 @@
 <div class="cursor"></div>
 
 <nav>
-  <div>rjl</div>
+  <div>Studio RJL</div>
   <div>
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
@@ -195,20 +200,18 @@
 
 <div class="hero">
   <div>
-    <h1>studio rjl</h1>
-    <p>crafting bespoke brandscapes that feel like places</p>
+    <!-- Replace with your PNG when ready -->
+    <img src="https://via.placeholder.com/120x120" alt="monogram">
+    <p>crafting bespoke brandscapes that become places</p>
   </div>
 </div>
 
 <section id="projects">
+  <h2>Selected Works</h2>
   <div class="projects">
-
-    <div class="project"><img src="/mnt/data/RJL INTRO.png"><div class="caption">Studio RJL</div></div>
-
-    <div class="project"><img src="/mnt/data/Studio61.png"><div class="caption">Interior Study</div></div>
-
-    <div class="project"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"><div class="caption">Material Study</div></div>
-
+    <div class="project"><img src="portrait.jpg"><div class="caption">About Me</div></div>
+    <div class="project"><img src="interior.jpg"><div class="caption">Interior Study</div></div>
+    <div class="project"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"><div class="caption">Brandscape</div></div>
   </div>
 </section>
 
@@ -217,7 +220,6 @@
     <h2>About</h2>
     <p>
       I craft bespoke brandscapes that feel like places. Atmosphere-led, sensory-rich environments where identity is not just seen, but felt.
-      Each project is an exploration of texture, tone, and presence — where digital space becomes something intimate, dimensional, and quietly luxurious.
     </p>
   </div>
 </section>
