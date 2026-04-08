@@ -81,10 +81,26 @@
 
     iframe {
       width: 100%;
-      height: 720px;
+      height: 800px;
       border: none;
       border-radius: 10px;
       background: white;
+    }
+
+    /* Mobile Fix */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .container {
+        padding: 30px 16px;
+        border-radius: 10px;
+      }
+
+      iframe {
+        height: 1000px; /* gives breathing room for scrolling */
+      }
     }
 
     .back-link {
@@ -114,8 +130,8 @@
   <h1>Discovery Call</h1>
 
   <p>
-    A free 20 minute call to connect and explore your brand.<br><br>
-    We’ll walk through where you are & what’s asking to emerge,<br>
+    A quiet space to explore your brand as a place.<br><br>
+    We’ll walk through where you are, what’s asking to emerge,<br>
     and whether we’re aligned to create something meaningful together.
   </p>
 
