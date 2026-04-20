@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>portfolio — studio rjl</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -44,27 +44,33 @@ nav a{margin-left:24px;text-decoration:none;color:var(--text);}
 nav a:hover{color:var(--hover);text-decoration:underline;}
 
 .header{
-  padding:140px 10% 60px;
+  padding:140px 10% 40px;
   text-align:center;
 }
 
 .header h1{
-  font-family:'Playfair Display',serif;
-  font-style:italic;
+  font-family:'Cormorant Infant', serif;
+  font-weight:300;
   color:var(--gold);
-  margin-bottom:20px;
+  margin-bottom:10px;
 }
 
-.search-bar{
-  margin-top:20px;
+.subline{
+  font-size:12px;
+  opacity:0.7;
+  margin-top:10px;
+  min-height:16px;
 }
 
-.search-bar input{
+.filter{
+  margin-top:30px;
+}
+
+select{
   padding:10px 16px;
   border:1px solid rgba(0,0,0,0.1);
   background:transparent;
   font-family:'Courier New',monospace;
-  width:260px;
 }
 
 .portfolio{
@@ -103,7 +109,8 @@ nav a:hover{color:var(--hover);text-decoration:underline;}
 }
 
 .category{
-  font-style:italic;
+  font-family:'Cormorant Infant', serif;
+  font-weight:300;
   color:var(--gold);
   display:block;
   margin-bottom:4px;
@@ -136,8 +143,18 @@ nav a:hover{color:var(--hover);text-decoration:underline;}
 
 <div class="header">
   <h1>portfolio</h1>
-  <div class="search-bar">
-    <input type="text" id="search" placeholder="filter by project type">
+  <div class="subline" id="typeLine"></div>
+
+  <div class="filter">
+    <select id="filter">
+      <option value="all">filter by project type</option>
+      <option value="interiors">Interiors</option>
+      <option value="property">Property</option>
+      <option value="branding">Branding</option>
+      <option value="packaging">Packaging</option>
+      <option value="architecture">Architecture</option>
+      <option value="concept">Concept</option>
+    </select>
   </div>
 </div>
 
@@ -193,15 +210,35 @@ const observer=new IntersectionObserver(entries=>{
 });
 cards.forEach(c=>observer.observe(c));
 
-// filter
-const search=document.getElementById('search');
-search.addEventListener('input',()=>{
-  const val=search.value.toLowerCase();
+// dropdown filter
+const filter=document.getElementById('filter');
+filter.addEventListener('change',()=>{
+  const val=filter.value;
   cards.forEach(card=>{
-    const tags=card.dataset.tags;
-    card.style.display=tags.includes(val)?'block':'none';
+    if(val==='all'){
+      card.style.display='block';
+    } else {
+      card.style.display=card.dataset.tags.includes(val)?'block':'none';
+    }
   });
 });
+
+// typing line
+function typeText(el,text,speed=40){
+  let i=0;
+  function type(){
+    if(i<text.length){
+      el.textContent+=text.charAt(i);
+      i++;
+      setTimeout(type,speed);
+    }
+  }
+  type();
+}
+
+window.onload=()=>{
+  typeText(document.getElementById('typeLine'),'an unfolding collection of spaces, identities & atmospheres');
+};
 </script>
 
 </body>
