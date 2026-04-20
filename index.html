@@ -16,11 +16,8 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Preload logo -->
-  <link rel="preload" as="image" href="RJL_green_transparent.png">
-
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -64,7 +61,8 @@
       background:var(--primary);
       position:fixed; pointer-events:none;
       transform:translate(-50%,-50%);
-      z-index:9999; transition: background 0.2s ease;
+      z-index:9999;
+      transition: background 0.2s ease;
     }
 
     .cursor.link-hover { background: var(--cursor-hover); }
@@ -83,7 +81,11 @@
     nav a:hover { color:var(--hover); text-decoration:underline; }
 
     .hero {
-      height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
       padding: 0 20px;
     }
 
@@ -99,53 +101,79 @@
     @keyframes fadeIn { to { opacity:1; } }
 
     .signature {
-      font-family:'Playfair Display',serif;
-      font-style:italic; font-size:18px;
+      font-family:'Cormorant Infant', serif;
+      font-weight:300;
+      font-size:20px;
+      letter-spacing:0.5px;
       color:var(--gold);
       margin-bottom:30px;
     }
 
-    .hero p { font-size:12px; opacity:0.7; }
+    .hero p {
+      font-size:12px;
+      opacity:0.7;
+      letter-spacing:0.4px;
+      line-height:1.5;
+    }
+
     .hero .line1 { margin-bottom:6px; }
 
     section { padding:140px 10%; }
 
     .projects {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:60px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:60px;
     }
 
     .project {
-      background:var(--ivory); padding:12px;
+      background:var(--ivory);
+      padding:12px;
       box-shadow:0 10px 30px rgba(0,0,0,0.05);
-      opacity:0; transform:translateY(40px);
+      opacity:0;
+      transform:translateY(40px);
       transition:all 1.2s ease;
     }
 
     .project img {
-      width:100%; display:block;
+      width:100%;
+      display:block;
       transition:transform 0.6s ease, filter 0.6s ease;
       pointer-events:none;
     }
 
     .project:nth-child(3) img { transform: scaleX(-1); }
 
-    .project:hover img { transform:scale(1.03); filter:contrast(1.05); }
+    .project:hover img {
+      transform:scale(1.03);
+      filter:contrast(1.05);
+    }
 
-    .project.visible { opacity:1; transform:translateY(0); }
+    .project.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
 
     .about {
-      max-width:700px; margin:auto;
+      max-width:700px;
+      margin:auto;
       text-align:center;
     }
 
     .about-text h3 {
-      font-family:'Playfair Display', serif;
-      font-style:italic;
+      font-family:'Cormorant Infant', serif;
+      font-weight:300;
+      font-size:20px;
+      letter-spacing:0.6px;
       color:var(--gold);
       margin-bottom:20px;
     }
 
-    .about p { line-height:1.9; font-size:11px; }
+    .about p {
+      line-height:1.8;
+      font-size:11px;
+      letter-spacing:0.3px;
+    }
 
     .about-image {
       position:relative;
@@ -170,7 +198,10 @@
       transition:all 1.2s ease;
     }
 
-    .about-image img.visible { opacity:1; transform:translateY(0); }
+    .about-image img.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
 
     .dark-section {
       background:var(--dark);
@@ -180,8 +211,9 @@
 
     .dark-section p {
       max-width:500px;
-      margin: auto;
+      margin:auto;
       margin-bottom:60px;
+      letter-spacing:0.4px;
     }
 
     .dark-section a {
@@ -200,8 +232,10 @@
     }
 
     footer {
-      text-align:center; font-size:10px;
-      padding:40px 20px; opacity:0.6;
+      text-align:center;
+      font-size:10px;
+      padding:40px 20px;
+      opacity:0.6;
     }
 
   </style>
@@ -223,7 +257,7 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <img src="RJL_green_transparent.png" loading="eager" alt="studio rjl monogram" draggable="false">
+    <img src="RJL_green_transparent.png" alt="studio rjl monogram" draggable="false">
 
     <div class="signature" id="type1"></div>
 
@@ -232,35 +266,31 @@
   </div>
 </div>
 
-<section id="projects">
-  <div class="projects">
-    <div class="project"><img src="interior-brandscape-design-warm-light.jpg" loading="lazy" draggable="false"></div>
-    <div class="project"><img src="floral-monogram-brandmark.jpg" loading="lazy" draggable="false"></div>
-    <div class="project"><img src="interior-brandscape-design-warm.jpg" loading="lazy" draggable="false"></div>
-  </div>
-</section>
-
 <section id="about">
   <div class="about">
     <div class="about-text">
       <h3 class="type" data-text="about studio rjl"></h3>
+
       <p>
         Studio RJL is a multidisciplinary design studio <br>
         crafting brands that <em>feel</em> like spaces.
       </p>
 
       <div class="about-image">
-        <img src="studiorjl.jpg" loading="lazy" alt="Rebekah Jane portrait" draggable="false">
+        <img src="studiorjl.jpg" alt="Rebekah Jane portrait" draggable="false">
       </div>
 
       <p>
-      Rebekah has worked across architecture, landscape & interiors,<br> brands, objects & visual identities.<br><br>
-      Her work is guided by a deep love for nature,<br>
-      and is shaped by her reverence for the magic alive in sensory experience;<br>
-      tone, texture and gesture.<br><br>
-      She designs brands like she would create a place;<br>
-      with real atmosphere, detail, depth & personality <br>&<br>
-      <em>a sense of elevated whimsy.</em>
+        Rebekah has worked across architecture, landscape & interiors,<br>
+        brands, objects & visual identities.<br><br>
+
+        Her work is guided by a deep love for nature,<br>
+        and is shaped by her reverence for the magic alive in sensory experience;<br>
+        tone, texture and gesture.<br><br>
+
+        She designs brands like she would create a place;<br>
+        with real atmosphere, detail, depth & personality <br>&<br>
+        <em>a sense of elevated whimsy.</em>
       </p>
     </div>
   </div>
@@ -271,6 +301,7 @@
     For those seeking a brand that resonates,<br><br>
     — <em>immersive, kindred & alive.</em>
   </p>
+
   <a href="booking.html" target="_blank">
     Book a discovery call
   </a>
@@ -282,6 +313,7 @@
 
 <script>
   const cursor = document.querySelector('.cursor');
+
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
@@ -294,11 +326,12 @@
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
     });
   });
 
-  document.querySelectorAll('.project').forEach(p => observer.observe(p));
   observer.observe(document.querySelector('.about-image img'));
 
   function typeText(el, text, speed=60) {
