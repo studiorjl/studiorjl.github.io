@@ -57,15 +57,21 @@
     }
 
     .cursor {
-      width:14px; height:14px; border-radius:50%;
-      background:var(--primary);
-      position:fixed; pointer-events:none;
-      transform:translate(-50%,-50%);
-      z-index:9999;
-      transition: background 0.2s ease;
-    }
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:var(--primary);
+  position:fixed;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:9999;
+  transition: all 0.25s ease;
+}
 
-    .cursor.link-hover { background: var(--cursor-hover); }
+.cursor.link-hover {
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(128,104,41,0.6), 0 0 24px rgba(128,104,41,0.4);
+}
 
     nav {
       position:fixed; top:0; width:100%;
