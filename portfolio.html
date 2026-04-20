@@ -1,40 +1,208 @@
-<section id="portfolio">
-  <div class="portfolio-intro">
-    <h2 class="type" data-text="selected works"></h2>
-    <p>an unfolding collection of spaces, identities & atmospheres</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>portfolio — studio rjl</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:#4c3b15;
+  --gold:#806829;
+  --text:#261e10;
+  --ivory:#eae4da;
+  --hover:#a36a29;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;cursor:none;}
+
+body{
+  background:var(--ivory);
+  font-family:'Courier New',monospace;
+  color:var(--text);
+}
+
+.cursor{
+  width:14px;height:14px;border-radius:50%;
+  background:var(--primary);
+  position:fixed;transform:translate(-50%,-50%);
+  pointer-events:none;z-index:9999;
+}
+
+nav{
+  position:fixed;top:0;width:100%;
+  display:flex;justify-content:space-between;
+  padding:24px 40px;font-size:12px;
+  background:rgba(234,228,218,0.6);
+  backdrop-filter:blur(6px);
+}
+
+nav div:first-child{color:var(--gold);} 
+nav a{margin-left:24px;text-decoration:none;color:var(--text);} 
+nav a:hover{color:var(--hover);text-decoration:underline;}
+
+.header{
+  padding:140px 10% 60px;
+  text-align:center;
+}
+
+.header h1{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  color:var(--gold);
+  margin-bottom:20px;
+}
+
+.search-bar{
+  margin-top:20px;
+}
+
+.search-bar input{
+  padding:10px 16px;
+  border:1px solid rgba(0,0,0,0.1);
+  background:transparent;
+  font-family:'Courier New',monospace;
+  width:260px;
+}
+
+.portfolio{
+  padding:40px 10% 120px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:60px;
+}
+
+.card{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.card.visible{opacity:1;transform:translateY(0);} 
+
+.frame{
+  background:var(--ivory);
+  padding:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.frame img{
+  width:100%;
+  display:block;
+  transition:transform .6s ease;
+}
+
+.card:hover img{transform:scale(1.03);} 
+
+.meta{
+  margin-top:10px;
+  font-size:11px;
+  opacity:.7;
+}
+
+.category{
+  font-style:italic;
+  color:var(--gold);
+  display:block;
+  margin-bottom:4px;
+}
+
+.tag{
+  display:inline-block;
+  margin:2px 4px 0 0;
+  padding:2px 6px;
+  border:1px solid rgba(0,0,0,0.1);
+  font-size:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<nav>
+  <div>studio rjl</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#book">Book</a>
+  </div>
+</nav>
+
+<div class="header">
+  <h1>portfolio</h1>
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="filter by project type">
+  </div>
+</div>
+
+<section class="portfolio" id="portfolioGrid">
+
+  <div class="card" data-tags="interiors property">
+    <div class="frame">
+      <img src="interior-brandscape-design-warm-light.jpg">
+    </div>
+    <div class="meta">
+      <span class="category">filed under</span>
+      <span class="tag">Interiors</span>
+      <span class="tag">Property</span>
+    </div>
   </div>
 
-  <div class="editorial-flow">
-
-    <!-- PROJECT 1 -->
-    <div class="editorial-block left">
-      <div class="image-wrap">
-        <img src="interior-brandscape-design-warm-light.jpg" draggable="false">
-      </div>
-      <div class="meta">
-        <span class="caption">interior study</span>
-      </div>
+  <div class="card" data-tags="branding packaging">
+    <div class="frame">
+      <img src="floral-monogram-brandmark.jpg">
     </div>
-
-    <!-- PROJECT 2 -->
-    <div class="editorial-block right">
-      <div class="image-wrap layered">
-        <img src="floral-monogram-brandmark.jpg" draggable="false">
-      </div>
-      <div class="meta">
-        <span class="caption gold">brandmark exploration</span>
-      </div>
+    <div class="meta">
+      <span class="category">filed under</span>
+      <span class="tag">Branding</span>
+      <span class="tag">Packaging</span>
     </div>
-
-    <!-- PROJECT 3 -->
-    <div class="editorial-block left">
-      <div class="image-wrap">
-        <img src="interior-brandscape-design-warm.jpg" draggable="false">
-      </div>
-      <div class="meta">
-        <span class="caption">brandscape study</span>
-      </div>
-    </div>
-
   </div>
+
+  <div class="card" data-tags="architecture concept">
+    <div class="frame">
+      <img src="interior-brandscape-design-warm.jpg">
+    </div>
+    <div class="meta">
+      <span class="category">filed under</span>
+      <span class="tag">Architecture</span>
+      <span class="tag">Concept</span>
+    </div>
+  </div>
+
 </section>
+
+<script>
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
+});
+
+const cards=document.querySelectorAll('.card');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');}
+  });
+});
+cards.forEach(c=>observer.observe(c));
+
+// filter
+const search=document.getElementById('search');
+search.addEventListener('input',()=>{
+  const val=search.value.toLowerCase();
+  cards.forEach(card=>{
+    const tags=card.dataset.tags;
+    card.style.display=tags.includes(val)?'block':'none';
+  });
+});
+</script>
+
+</body>
+</html>
