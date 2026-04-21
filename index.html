@@ -454,18 +454,7 @@
 <div class="cursor"></div>
 
 <nav>
-  <div>studio rjl</div>
-
-  <div class="nav-links" id="navLinks">
-    <a href="portfolio.html">Portfolio</a>
-    <a href="#about">About</a>
-    <a href="#" id="enquiryToggle">Inquire</a>
-    <a href="booking.html">Book</a>
-  </div>
-
-  <div class="hamburger" id="hamburger">
-    ☰
-  </div>
+  <div id="header"></div>
 </nav>
 
 <div class="hero">
@@ -523,11 +512,7 @@
   </a>
 </section>
 
-<footer>
-  © 2026 studio rjl <br><br>
-  Studio RJL was formed by the lore & land on Dharug country, and now creates upon Bundjalung land. <br>
-  We pay our deepest respects to the traditional custodians of this land, past, present and emergent, and to the enduring wisdom of this place that continues to teach, inform & inspire our work.
-</footer>
+<div id="footer"></div>
 
   <div class="enquiry-panel" id="enquiryPanel">
     <div class="enquiry-close" id="enquiryClose">×</div>
@@ -721,6 +706,15 @@ hamburger.addEventListener('click', () => {
 
   
 </script>
+<script>
+async function loadComponent(id, file) {
+  const res = await fetch(file);
+  const html = await res.text();
+  document.getElementById(id).innerHTML = html;
+}
 
+loadComponent("header", "components/header.html");
+loadComponent("footer", "components/footer.html");
+</script>
 </body>
 </html>
