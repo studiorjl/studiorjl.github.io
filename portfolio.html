@@ -56,6 +56,15 @@ nav div:first-child{color:var(--gold);}
 nav a{margin-left:24px;text-decoration:none;color:var(--text);} 
 nav a:hover{color:var(--hover);text-decoration:underline;}
 
+    .logo-link{
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.logo-link:hover{
+  color: var(--hover);
+}
+
 .header{
   padding:140px 10% 40px;
   text-align:center;
@@ -79,7 +88,7 @@ nav a:hover{color:var(--hover);text-decoration:underline;}
   margin-top:30px;
 }
 
-select{
+.select{
   padding:10px 16px;
   border:1px solid rgba(0,0,0,0.1);
   background:transparent;
@@ -145,13 +154,18 @@ select{
 <div class="cursor"></div>
 
 <nav>
-  <div>studio rjl</div>
-  <div>
-    <a href="index.html">Home</a>
+  <div class="nav-left">
+    <a href="index.html" class="logo-link">studio rjl</a>
+  </div>
+
+  <div class="nav-links" id="navLinks">
     <a href="portfolio.html">Portfolio</a>
     <a href="index.html#about">About</a>
+    <a href="#" id="enquiryToggle">Inquire</a>
     <a href="booking.html">Book</a>
   </div>
+
+  <div class="hamburger" id="hamburger">☰</div>
 </nav>
 
 <div class="header">
@@ -256,7 +270,103 @@ window.onload=()=>{
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
 });
-</script>
 
+    // ENQUIRY SYSTEM (MASTER)
+const enquiryToggle = document.getElementById('enquiryToggle');
+const enquiryPanel = document.getElementById('enquiryPanel');
+const enquiryClose = document.getElementById('enquiryClose');
+
+enquiryToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  enquiryPanel.classList.add('active');
+});
+
+enquiryClose.addEventListener('click', () => {
+  enquiryPanel.classList.remove('active');
+});
+
+document.addEventListener('click', (e) => {
+  if (!enquiryPanel.contains(e.target) && e.target.id !== 'enquiryToggle') {
+    enquiryPanel.classList.remove('active');
+  }
+});
+// ENQUIRY SYSTEM (MASTER)
+const enquiryToggle = document.getElementById('enquiryToggle');
+const enquiryPanel = document.getElementById('enquiryPanel');
+const enquiryClose = document.getElementById('enquiryClose');
+
+enquiryToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  enquiryPanel.classList.add('active');
+});
+
+enquiryClose.addEventListener('click', () => {
+  enquiryPanel.classList.remove('active');
+});
+
+document.addEventListener('click', (e) => {
+  if (!enquiryPanel.contains(e.target) && e.target.id !== 'enquiryToggle') {
+    enquiryPanel.classList.remove('active');
+  }
+});
+    .enquiry-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  height: 100vh;
+  background: #eae4dc;
+  box-shadow: -20px 0 60px rgba(0,0,0,0.12);
+  transform-origin: right center;
+  transform: perspective(1200px) rotateY(-18deg);
+  transition: right 0.9s cubic-bezier(0.77, 0, 0.18, 1),
+              transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+  z-index: 9998;
+  overflow-y: auto;
+}
+
+.enquiry-panel.active {
+  right: 0;
+  transform: perspective(1200px) rotateY(0deg);
+}
+    
+</script>
+<div class="enquiry-panel" id="enquiryPanel">
+
+  <div class="enquiry-close" id="enquiryClose">×</div>
+
+  <div class="enquiry-inner">
+
+    <h2>ENQUIRIES</h2>
+    <p>For all creative enquiries, please complete the form below and we will be in touch.</p>
+
+    <form id="enquiryForm" action="https://formspree.io/f/mzdyagdr" method="POST">
+
+      <label>Name*</label>
+      <input type="text" name="name" required>
+
+      <label>Email*</label>
+      <input type="email" name="email" required>
+
+      <label>Message</label>
+      <textarea name="message" rows="4"></textarea>
+
+      <input type="hidden" name="_subject" value="New Studio RJL Enquiry">
+
+      <button type="submit">Send</button>
+    </form>
+
+    <div class="thank-you" id="thankYouMessage">
+      <h2>Thank you</h2>
+      <p>We’ll be in touch very soon.</p>
+    </div>
+
+  </div>
+</div>
+    <footer class="site-footer">
+  © 2026 studio rjl <br><br>
+  Studio RJL was formed on Dharug Country and now creates on Bundjalung land. <br>
+  We acknowledge the Traditional Custodians past, present and emerging.
+</footer>
 </body>
 </html>
