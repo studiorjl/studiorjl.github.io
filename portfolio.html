@@ -175,11 +175,17 @@ option{
 
 <nav>
   <div>studio rjl</div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="index.html#about">About</a>
-    <a href="booking.html">Inquire</a>
+
+  <div class="nav-links" id="navLinks">
+  <a href="index.html">Home</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="index.html#about">About</a>
+  <a href="#" id="enquiryToggle">Inquire</a>
+  <a href="booking.html">Book</a>
+</div>
+
+  <div class="hamburger" id="hamburger">
+    ☰
   </div>
 </nav>
 
@@ -283,8 +289,59 @@ window.onload=()=>{
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
 });
-  
+  const enquiryToggle = document.getElementById('enquiryToggle');
+const enquiryPanel = document.getElementById('enquiryPanel');
+const enquiryClose = document.getElementById('enquiryClose');
+
+enquiryToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  enquiryPanel.classList.toggle('active');
+});
+
+enquiryClose.addEventListener('click', () => {
+  enquiryPanel.classList.remove('active');
+});
+
+document.addEventListener('click', (e) => {
+  if (!enquiryPanel.contains(e.target) && !enquiryToggle.contains(e.target)) {
+    enquiryPanel.classList.remove('active');
+  }
+});
 </script>
 
+  <div class="enquiry-panel" id="enquiryPanel">
+
+  <div class="enquiry-close" id="enquiryClose">×</div>
+
+  <div class="enquiry-inner">
+
+    <h2>ENQUIRIES</h2>
+    <br>
+    <p>For all creative enquiries, please complete the form below and we will be in touch.</p>
+
+    <form id="enquiryForm" action="https://formspree.io/f/mzdyagdr" method="POST">
+
+      <label>Name*</label>
+      <input type="text" name="name" required>
+
+      <label>Email*</label>
+      <input type="email" name="email" required>
+
+      <label>Message</label>
+      <textarea name="message" rows="4"></textarea>
+
+      <input type="hidden" name="_subject" value="New Studio RJL Enquiry">
+
+      <button type="submit">Send</button>
+
+    </form>
+
+    <div class="thank-you" id="thankYouMessage">
+      <h2>Thank you!</h2>
+      <p><br>Your message has been sent! <br><br>We’ll be in touch very very soon.</p>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
