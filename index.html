@@ -314,6 +314,50 @@
   transition: all 0.6s ease;
 }
 
+    /* HAMBURGER (hidden on desktop) */
+.hamburger {
+  display: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* MOBILE NAV */
+@media (max-width: 768px) {
+
+  nav {
+    padding: 20px 24px;
+    align-items: center;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: rgba(234,228,218,0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .nav-links a {
+    margin-left: 0;
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
   </style>
 </head>
 
@@ -324,11 +368,16 @@
 
 <nav>
   <div>studio rjl</div>
-  <div>
+
+  <div class="nav-links" id="navLinks">
     <a href="portfolio.html">Portfolio</a>
     <a href="#about">About</a>
     <a href="#" id="enquiryToggle">Inquire</a>
     <a href="booking.html">Book</a>
+  </div>
+
+  <div class="hamburger" id="hamburger">
+    ☰
   </div>
 </nav>
 
@@ -538,6 +587,13 @@ form.addEventListener('submit', async function(e) {
   } else {
     alert("Something weird happened. Sorry, would you mind trying again.");
   }
+});
+
+  const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
 });
 
   
