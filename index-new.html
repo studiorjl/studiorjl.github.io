@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>studio rjl</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:#4c3b15;
+  --gold:#806829;
+  --text:#261e10;
+  --ivory:#eae4da;
+  --dark:#261e10;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;cursor:none;}
+body{
+  background:var(--ivory);
+  font-family:'Courier New', monospace;
+}
+
+.cursor{
+  width:14px;height:14px;border-radius:50%;
+  background:var(--primary);
+  position:fixed;pointer-events:none;
+  transform:translate(-50%,-50%);
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero img{
+  width:240px;
+  opacity:0;
+  animation:fade 1.6s forwards;
+}
+
+@keyframes fade{to{opacity:1;}}
+
+.signature{
+  font-family:'Cormorant Infant', serif;
+  color:var(--gold);
+  margin-top:20px;
+}
+
+/* PROJECTS */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:60px;
+  padding:120px 10%;
+}
+
+.project{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.project.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+</style>
+</head>
+
+<body oncontextmenu="return false">
+
+<div class="cursor"></div>
+
+<!-- NAV -->
+<div id="nav-container"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <img src="RJL_green_transparent.png" draggable="false">
+
+    <div class="signature" id="type1"></div>
+    <p id="type2"></p>
+    <p><em id="type3"></em></p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects">
+  <div class="project"><img src="interior-brandscape-design-warm-light.jpg"></div>
+  <div class="project"><img src="floral-monogram-brandmark.jpg"></div>
+  <div class="project"><img src="interior-brandscape-design-warm.jpg"></div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer-container"></div>
+
+<!-- ENQUIRY -->
+<div id="enquiry-container"></div>
+
+<script>
+// cursor
+const c = document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+  c.style.left=e.clientX+'px';
+  c.style.top=e.clientY+'px';
+});
+
+// typing
+function type(el,text,s=60){
+ let i=0;
+ function t(){
+  if(i<text.length){
+   el.textContent+=text[i++];
+   setTimeout(t,s);
+  }
+ }
+ t();
+}
+
+type(document.getElementById('type1'),'design studio');
+type(document.getElementById('type2'),'crafting bespoke brandscapes');
+type(document.getElementById('type3'),'that resonate.');
+
+// scroll reveal
+const obs=new IntersectionObserver(e=>{
+ e.forEach(x=>{
+  if(x.isIntersecting)x.target.classList.add('visible');
+ });
+});
+
+document.querySelectorAll('.project').forEach(p=>obs.observe(p));
+
+// COMPONENT LOADER
+async function loadComponent(id, file) {
+  const el = document.getElementById(id);
+  const res = await fetch(file);
+  el.innerHTML = await res.text();
+}
+
+loadComponent("nav-container","components/nav.html");
+loadComponent("footer-container","components/footer.html");
+loadComponent("enquiry-container","components/enquiry.html");
+
+</script>
+
+</body>
+</html>
