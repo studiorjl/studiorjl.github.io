@@ -357,6 +357,69 @@
     display: flex;
   }
 }
+    /* --- SERVICE RADIO STYLING --- */
+.service-options {
+  margin-top: 10px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  margin-top: 10px;
+  cursor: none;
+}
+
+.radio input {
+  display: none;
+}
+
+.radio span {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #261e10;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.radio input:checked + span::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #261e10;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+    /* --- MOBILE ENQUIRY PANEL FIX --- */
+@media (max-width: 768px) {
+
+  .enquiry-panel {
+    width: 100%;
+    right: -100%;
+  }
+
+  .enquiry-panel.active {
+    right: 0;
+  }
+
+.enquiry-inner {
+  padding: 100px 60px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+  .enquiry-inner input,
+.enquiry-inner textarea {
+  margin-bottom: 10px;
+}
+
+}
 
   </style>
 </head>
@@ -454,15 +517,48 @@
       <input type="text" name="name" required>
 
       <label>Service</label>
-      <select name="service">
-        <option>Creative Art Direction</option>
-        <option>Branding</option>
-        <option>Social Content Templates</option>
-        <option>Print Media</option>
-        <option>Labels & Packaging</option>
-        <option>Website Design/Development</option>
-        <option>Spatial Concept Design</option>
-      </select>
+
+<div class="service-options">
+  <label class="radio">
+    <input type="radio" name="service" value="Art Direction">
+    <span></span> Art Direction
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="service" value="Branding">
+    <span></span> Branding
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="service" value="Content Templates">
+    <span></span> Content Templates
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="service" value="Print Materials">
+    <span></span> Print Materials
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="service" value="Digital Marketing">
+    <span></span> Digital Marketing
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="service" value="Website Design">
+    <span></span> Website Design
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="service" value="Website Development">
+    <span></span> Website Development
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="service" value="Social Media">
+    <span></span> Social Media
+  </label>
+</div>
 
       <label>Company*</label>
       <input type="text" name="company" required>
