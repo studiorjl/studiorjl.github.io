@@ -234,6 +234,23 @@
   right: 0;
 }
 
+.enquiry-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  transition: opacity 0.2s ease;
+  z-index: 10000;
+}
+
+.enquiry-close:hover {
+  opacity: 0.5;
+}
+
 .enquiry-inner {
   padding: 60px 40px;
 }
@@ -513,6 +530,7 @@
 </footer>
 
   <div class="enquiry-panel" id="enquiryPanel">
+    <div class="enquiry-close" id="enquiryClose">×</div>
   <div class="enquiry-inner">
 
     <h2>ENQUIRIES</h2>
@@ -650,6 +668,11 @@
   // ENQUIRY PANEL
 const enquiryToggle = document.getElementById('enquiryToggle');
 const enquiryPanel = document.getElementById('enquiryPanel');
+const enquiryClose = document.getElementById('enquiryClose');
+
+enquiryClose.addEventListener('click', () => {
+  enquiryPanel.classList.remove('active');
+});
 
 enquiryToggle.addEventListener('click', (e) => {
   e.preventDefault();
