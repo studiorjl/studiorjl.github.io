@@ -1,154 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>studio rjl</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>studio rjl</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta name="description" content="Studio RJL is a multidisciplinary design studio specialising in visual identity, creative direction and brand storytelling.">
 
-<style>
-:root {
-  --primary:#4c3b15;
-  --gold:#806829;
-  --text:#261e10;
-  --ivory:#eae4da;
-  --dark:#261e10;
+<!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBJDD7VN3N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PBJDD7VN3N');
+  </script>
+
+  <!-- SEO -->
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="studio rjl">
+  <meta property="og:description" content="Crafting bespoke brandscapes that resonate.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Preload logo -->
+  <link rel="preload" as="image" href="RJL_green_transparent.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4c3b15;
+      --gold: #806829;
+      --text: #261e10;
+      --ivory: #eae4da;
+      --dark: #261e10;
+      --hover: #a36a29;
+      --cursor-hover: #806829;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; cursor:none; user-select:none; }
+
+    body {
+      background: var(--ivory);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+    }
+
+    .light-leak {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), transparent 60%);
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    body::after {
+      content:"";
+      position:fixed;
+      inset:0;
+      background:url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      opacity:0.08;
+      pointer-events:none;
+    }
+
+    .cursor {
+      width:14px; height:14px; border-radius:50%;
+      background:var(--primary);
+      position:fixed; pointer-events:none;
+      transform:translate(-50%,-50%);
+      z-index:9999; transition: background 0.2s ease;
+    }
+
+    .cursor.link-hover { background: var(--cursor-hover); }
+
+    nav {
+      position:fixed; top:0; width:100%;
+      display:flex; justify-content:space-between;
+      padding:24px 40px; font-size:12px;
+      background:rgba(234,228,218,0.6);
+      backdrop-filter:blur(6px); z-index:10;
+    }
+
+    nav div:first-child { color: var(--gold); }
+
+    nav a { text-decoration:none; color:var(--text); margin-left:24px; }
+    nav a:hover { color:var(--hover); text-decoration:underline; }
+
+    .hero {
+      height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
+      padding: 0 20px;
+    }
+
+    .hero-inner { transform: translateY(-30px); }
+
+    .hero img {
+      width:240px;
+      opacity:0;
+      animation: fadeIn 2s ease forwards;
+      margin-bottom:20px;
+    }
+
+    @keyframes fadeIn { to { opacity:1; } }
+
+    .signature {
+      font-family:'Cormorant Infant', serif;
+      font-style:normal;
+      font-size:18px;
+      color:var(--gold);
+      margin-bottom:30px;
+    }
+
+    .hero p { font-size:12px; opacity:0.7; }
+    .hero .line1 { margin-bottom:6px; }
+
+    section { padding:140px 10%; }
+
+    .projects {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:60px;
+    }
+
+    .project {
+      background:var(--ivory); padding:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+      opacity:0; transform:translateY(40px);
+      transition:all 1.2s ease;
+    }
+
+    .project img {
+      width:100%; display:block;
+      transition:transform 0.6s ease, filter 0.6s ease;
+      pointer-events:none;
+    }
+
+    .project:nth-child(3) img { transform: scaleX(-1); }
+
+    .project:hover img { transform:scale(1.03); filter:contrast(1.05); }
+
+    .project.visible { opacity:1; transform:translateY(0); }
+
+    .about {
+      max-width:700px; margin:auto;
+      text-align:center;
+    }
+
+    .about-text h3 {
+      font-family:'Cormorant Infant', serif;
+      font-style:regular;
+      color:var(--gold);
+      margin-bottom:20px;
+    }
+
+    .about p { line-height:1.9; font-size:11px; }
+
+    .about-image {
+      position:relative;
+      margin:40px auto;
+      max-width:400px;
+    }
+
+    .about-image::before {
+      content:"";
+      position:absolute;
+      top:20px; left:20px;
+      width:100%; height:100%;
+      background:var(--ivory);
+      z-index:-1;
+      box-shadow:0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .about-image img {
+      width:100%;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all 1.2s ease;
+    }
+
+    .about-image img.visible { opacity:1; transform:translateY(0); }
+
+    .dark-section {
+      background:var(--dark);
+      color:var(--ivory);
+      text-align:center;
+    }
+
+    .dark-section p {
+      max-width:500px;
+      margin: auto;
+      margin-bottom:60px;
+    }
+
+    .dark-section a {
+      display:inline-block;
+      padding:12px 28px;
+      border:1px solid var(--ivory);
+      color:var(--ivory);
+      text-decoration:none;
+      border-radius:8px;
+      transition:0.3s ease;
+    }
+
+    .dark-section a:hover {
+      background:var(--ivory);
+      color:var(--dark);
+    }
+
+    footer {
+      text-align:center;
+      font-size:10px;
+      padding:40px 20px;
+      opacity:0.6;
+    }
+
+    /* ENQUIRY PANEL */
+.enquiry-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  height: 100vh;
+  background: #eae4dc;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+  transition: right 0.8s cubic-bezier(0.77, 0, 0.18, 1);
+  z-index: 9998;
+  overflow-y: auto;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;cursor:none;}
-body{
-  background:var(--ivory);
-  font-family:'Courier New', monospace;
+.enquiry-panel.active {
+  right: 0;
 }
 
-.cursor{
-  width:14px;height:14px;border-radius:50%;
-  background:var(--primary);
-  position:fixed;pointer-events:none;
-  transform:translate(-50%,-50%);
+.enquiry-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  transition: opacity 0.2s ease;
+  z-index: 10000;
 }
 
-/* HERO */
-.hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+.enquiry-close:hover {
+  opacity: 0.5;
 }
 
-.hero img{
-  width:240px;
-  opacity:0;
-  animation:fade 1.6s forwards;
+.enquiry-inner {
+  padding: 60px 40px;
 }
 
-@keyframes fade{to{opacity:1;}}
-
-.signature{
-  font-family:'Cormorant Infant', serif;
-  color:var(--gold);
-  margin-top:20px;
+.enquiry-inner h2 {
+  font-family: 'Cormorant Infant', serif;
+  font-weight: 400;
+  font-size: 22px; /* +2px */
 }
 
-/* PROJECTS */
-.projects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:60px;
-  padding:120px 10%;
+.enquiry-inner p {
+  font-size: 13px; /* +2px */
+  margin-bottom: 30px;
 }
 
-.project{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
+.enquiry-inner label {
+  display: block;
+  margin-top: 16px;
+  font-size: 12px; /* +2px */
 }
 
-.project.visible{
-  opacity:1;
-  transform:translateY(0);
+.enquiry-inner input,
+.enquiry-inner select,
+.enquiry-inner textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: none;
+  border-bottom: 1px solid #261e10;
+  background: transparent;
+  font-family: 'Courier New', monospace;
+  font-size: 13px; /* +2px */
 }
 
-</style>
+.enquiry-inner button {
+  margin-top: 30px;
+  padding: 12px 28px;
+  border: 1px solid var(--ivory);
+  background: var(--dark);
+  color: var(--ivory);
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  border-radius: 8px;
+  cursor: none;
+  transition: 0.3s ease;
+}
+
+.enquiry-inner button:hover {
+  background: var(--ivory);
+  color: var(--dark);
+  border: 1px solid var(--dark);
+}
+
+.enquiry-inner button:hover {
+  background: #261e10;
+  color: #eae4dc;
+}
+
+/* THANK YOU */
+.thank-you {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.thank-you.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.6s ease;
+}
+
+    /* HAMBURGER (hidden on desktop) */
+.hamburger {
+  display: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* MOBILE NAV */
+@media (max-width: 768px) {
+
+  nav {
+    padding: 20px 24px;
+    align-items: center;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: rgba(234,228,218,0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .nav-links a {
+    margin-left: 0;
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+ /* --- SERVICE OPTIONS (UPDATED) --- */
+.service-options {
+  margin-top: 12px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  margin-top: 10px;
+  cursor: none;
+  line-height: 1; /* tight vertical alignment */
+}
+  
+.radio:hover span {
+  border-color: var(--hover);
+}
+
+.radio input {
+  display: none;
+}
+
+.radio span {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #261e10;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  transform: translateY(1px); /*  optical alignment */
+}
+
+.radio input:checked + span::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #261e10;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+    /* --- MOBILE ENQUIRY PANEL FIX --- */
+@media (max-width: 768px) {
+
+  .enquiry-panel {
+    width: 100%;
+    right: -100%;
+  }
+
+  .enquiry-panel.active {
+    right: 0;
+  }
+
+.enquiry-inner {
+  padding: 100px 60px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+  .enquiry-inner input,
+.enquiry-inner textarea {
+  margin-bottom: 10px;
+}
+
+}
+
+  </style>
 </head>
 
 <body oncontextmenu="return false">
 
+<div class="light-leak"></div>
 <div class="cursor"></div>
 
-<!-- NAV -->
-<div id="nav-container"></div>
+<nav>
+  <div>studio rjl</div>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <img src="RJL_green_transparent.png" draggable="false">
+  <div class="nav-links" id="navLinks">
+    <a href="portfolio.html">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#" id="enquiryToggle">Inquire</a>
+    <a href="booking.html">Book</a>
+  </div>
+
+  <div class="hamburger" id="hamburger">
+    ☰
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <img src="RJL_green_transparent.png" loading="eager" alt="studio rjl monogram" draggable="false">
 
     <div class="signature" id="type1"></div>
-    <p id="type2"></p>
+
+    <p class="line1" id="type2"></p>
     <p><em id="type3"></em></p>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="projects">
+    <div class="project"><img src="interior-brandscape-design-warm-light.jpg" loading="lazy" draggable="false"></div>
+    <div class="project"><img src="floral-monogram-brandmark.jpg" loading="lazy" draggable="false"></div>
+    <div class="project"><img src="interior-brandscape-design-warm.jpg" loading="lazy" draggable="false"></div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="projects">
-  <div class="project"><img src="interior-brandscape-design-warm-light.jpg"></div>
-  <div class="project"><img src="floral-monogram-brandmark.jpg"></div>
-  <div class="project"><img src="interior-brandscape-design-warm.jpg"></div>
+<section id="about">
+  <div class="about">
+    <div class="about-text">
+      <h3 class="type" data-text="about studio rjl"></h3>
+      <p>
+        Studio RJL is a multidisciplinary design studio <br>
+        crafting brands that <em>feel</em> like spaces.
+      </p>
+
+      <div class="about-image">
+        <img src="studiorjl.jpg" loading="lazy" alt="Rebekah Jane portrait" draggable="false">
+      </div>
+
+      <p>
+      Rebekah has worked across architecture, landscape & interiors,<br> brands, objects & visual identities.<br><br>
+      Her work is guided by a deep love for nature,<br>
+      and is shaped by her reverence for the magic alive in sensory experience;<br>
+      tone, texture and gesture.<br><br>
+      She designs brands like she would create a place;<br>
+      with real atmosphere, detail, depth & personality <br>&<br>
+      <em>a sense of elevated whimsy.</em>
+      </p>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
-<div id="footer-container"></div>
+<section class="dark-section" id="book">
+  <p>
+    For those seeking a brand that resonates,<br><br>
+    — <em>immersive, kindred & alive.</em>
+  </p>
+  <a href="booking.html">
+    Book a free discovery call.
+  </a>
+</section>
 
-<!-- ENQUIRY -->
-<div id="enquiry-container"></div>
+<footer>
+  © 2026 studio rjl <br><br>
+  Studio RJL was formed by the lore & land on Dharug country, and now creates upon Bundjalung land. <br>
+  We pay our deepest respects to the traditional custodians of this land, past, present and emergent, and to the enduring wisdom of this place that continues to teach, inform & inspire our work.
+</footer>
+
+  <div class="enquiry-panel" id="enquiryPanel">
+    <div class="enquiry-close" id="enquiryClose">×</div>
+  <div class="enquiry-inner">
+
+    <h2>ENQUIRIES</h2>
+    <br><p>For all creative enquiries, please complete the form below and we will be in touch.</p></br>
+
+    <form id="enquiryForm" action="https://formspree.io/f/mzdyagdr" method="POST">
+      
+      <label>Name*</label>
+      <input type="text" name="name" required>
+
+      <label>Service</label>
+
+<div class="service-options">
+  <label class="radio">
+    <input type="checkbox" name="service[]" value="Creative Art Direction">
+    <span></span> Creative Art Direction
+  </label>
+
+  <label class="radio">
+    <input type="checkbox" name="service[]" value="Branding & Visual Identity">
+    <span></span> Branding & Visual Identity
+  </label>
+
+  <label class="radio">
+    <input type="checkbox" name="service[]" value="Social Content Templates">
+    <span></span> Social Content Templates
+  </label>
+
+  <label class="radio">
+    <input type="checkbox" name="service[]" value="Print Media">
+    <span></span> Print Media
+  </label>
+
+  <label class="radio">
+    <input type="checkbox" name="service[]" value="Packaging & Labels">
+    <span></span> Packaging & Labels
+  </label>
+
+  <label class="radio">
+    <input type="checkbox" name="service[]" value="Website Design & Development">
+    <span></span> Website Design & Development
+  </label>
+
+  <label class="radio">
+    <input type="checkbox" name="service[]" value="Spatial Concept Design">
+    <span></span> Spatial Concept Design
+  </label>
+
+  
+</div>
+
+      <label>Company*</label>
+      <input type="text" name="company" required>
+
+      <label>Email*</label>
+      <input type="email" name="email" required>
+
+      <label>Phone</label>
+      <input type="tel" name="phone">
+
+      <label>Message</label>
+      <textarea name="message" rows="4"></textarea>
+
+      <input type="hidden" name="_subject" value="New Studio RJL Enquiry">
+
+      <button type="submit">Send</button>
+    </form>
+
+    <div class="thank-you" id="thankYouMessage">
+      <h2>Thank you!</h2>
+      <p><br>Your message has been sent! <br><br>We’ll be in touch very very soon.</p>
+    </div>
+
+  </div>
+</div>
 
 <script>
-// cursor
-const c = document.querySelector('.cursor');
-document.addEventListener('mousemove',e=>{
-  c.style.left=e.clientX+'px';
-  c.style.top=e.clientY+'px';
-});
+  const cursor = document.querySelector('.cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
 
-// typing
-function type(el,text,s=60){
- let i=0;
- function t(){
-  if(i<text.length){
-   el.textContent+=text[i++];
-   setTimeout(t,s);
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('mouseenter', () => cursor.classList.add('link-hover'));
+    link.addEventListener('mouseleave', () => cursor.classList.remove('link-hover'));
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    });
+  });
+
+  document.querySelectorAll('.project').forEach(p => observer.observe(p));
+  observer.observe(document.querySelector('.about-image img'));
+
+  function typeText(el, text, speed=60) {
+    return new Promise(resolve => {
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(typing, speed);
+        } else {
+          resolve();
+        }
+      }
+      typing();
+    });
   }
- }
- t();
-}
 
-type(document.getElementById('type1'),'design studio');
-type(document.getElementById('type2'),'crafting bespoke brandscapes');
-type(document.getElementById('type3'),'that resonate.');
+  async function runTyping() {
+    await typeText(document.getElementById('type1'), 'design studio');
+    await typeText(document.getElementById('type2'), 'crafting bespoke brandscapes');
+    await typeText(document.getElementById('type3'), 'that resonate.');
+  }
 
-// scroll reveal
-const obs=new IntersectionObserver(e=>{
- e.forEach(x=>{
-  if(x.isIntersecting)x.target.classList.add('visible');
- });
+  runTyping();
+
+  document.querySelectorAll('.type').forEach(el => {
+    const text = el.dataset.text;
+    let i = 0;
+    function type(){
+      if(i < text.length){
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 60);
+      }
+    }
+    type();
+  });
+
+  // ENQUIRY PANEL
+const enquiryToggle = document.getElementById('enquiryToggle');
+const enquiryPanel = document.getElementById('enquiryPanel');
+const enquiryClose = document.getElementById('enquiryClose');
+
+enquiryClose.addEventListener('click', () => {
+  enquiryPanel.classList.remove('active');
 });
 
-document.querySelectorAll('.project').forEach(p=>obs.observe(p));
+enquiryToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  enquiryPanel.classList.toggle('active');
+});
 
-// COMPONENT LOADER
-async function loadComponent(id, file) {
-  const el = document.getElementById(id);
-  const res = await fetch(file);
-  el.innerHTML = await res.text();
-}
+document.addEventListener('click', (e) => {
+  if (!enquiryPanel.contains(e.target) && !enquiryToggle.contains(e.target)) {
+    enquiryPanel.classList.remove('active');
+  }
+});
 
-loadComponent("nav-container","components/nav.html");
-loadComponent("footer-container","components/footer.html");
-loadComponent("enquiry-container","components/enquiry.html");
+// FORM SUBMIT
+const form = document.getElementById('enquiryForm');
+const thankYou = document.getElementById('thankYouMessage');
 
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if (response.ok) {
+    form.classList.add('fade-out');
+
+    setTimeout(() => {
+      form.style.display = 'none';
+      thankYou.classList.add('visible');
+    }, 500);
+  } else {
+    alert("Something weird happened. Sorry, would you mind trying again.");
+  }
+});
+
+  const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+  
 </script>
 
 </body>
