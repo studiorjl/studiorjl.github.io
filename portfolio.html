@@ -148,17 +148,59 @@ select{
   <div>studio rjl</div>
   <div>
     <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
     <a href="index.html#about">About</a>
     <a href="booking.html">Book</a>
   </div>
 </nav>
 
 <div class="header">
-  <h1>portfolio</h1>
+  <h1>recent works</h1>
   <div class="subline" id="typeLine"></div>
 
-  <div class="filter">
+  
+
+<section class="portfolio" id="portfolioGrid">
+
+  <div class="card" data-tags="interiors property">
+    <div class="frame">
+      <img src="interior-brandscape-design-warm-light.jpg">
+    </div>
+    <div class="meta">
+      <span class="category">filed under</span>
+      <span class="tag">Interior Design</span>
+        <span class="tag">Fabric Design</span>
+      <span class="tag">Lighting Concept Design</span>
+    </div>
+  </div>
+
+  <div class="card" data-tags="branding packaging">
+    <div class="frame">
+      <img src="floral-monogram-brandmark.jpg">
+    </div>
+    <div class="meta">
+      <span class="category">filed under</span>
+      <span class="tag">Branding</span>
+      <span class="tag">Visual Identity</span>
+      <span class="tag">Bespoke Printing</span>
+    </div>
+  </div>
+
+  <div class="card" data-tags="architecture concept">
+    <div class="frame">
+      <img src="interior-brandscape-design-warm.jpg">
+    </div>
+    <div class="meta">
+      <span class="category">filed under</span>
+      <span class="tag">Interior Architecture</span>
+      <span class="tag">Interior Spatial & Concept Design</span>
+        <span class="tag">Furniture & Lighting Design</span>
+        <span class="tag">Pattern Design</span>
+    </div>
+  </div>
+
+</section>
+
+<div class="filter">
     <select id="filter">
       <option value="all">filter by project type</option>
       <option value="interiors">Interiors</option>
@@ -170,43 +212,6 @@ select{
     </select>
   </div>
 </div>
-
-<section class="portfolio" id="portfolioGrid">
-
-  <div class="card" data-tags="interiors property">
-    <div class="frame">
-      <img src="interior-brandscape-design-warm-light.jpg">
-    </div>
-    <div class="meta">
-      <span class="category">filed under</span>
-      <span class="tag">Interiors</span>
-      <span class="tag">Property</span>
-    </div>
-  </div>
-
-  <div class="card" data-tags="branding packaging">
-    <div class="frame">
-      <img src="floral-monogram-brandmark.jpg">
-    </div>
-    <div class="meta">
-      <span class="category">filed under</span>
-      <span class="tag">Branding</span>
-      <span class="tag">Packaging</span>
-    </div>
-  </div>
-
-  <div class="card" data-tags="architecture concept">
-    <div class="frame">
-      <img src="interior-brandscape-design-warm.jpg">
-    </div>
-    <div class="meta">
-      <span class="category">filed under</span>
-      <span class="tag">Architecture</span>
-      <span class="tag">Concept</span>
-    </div>
-  </div>
-
-</section>
 
 <script>
 const cursor=document.querySelector('.cursor');
