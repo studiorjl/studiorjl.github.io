@@ -684,20 +684,36 @@
     await typeText(document.getElementById('type3'), 'that resonate.');
   }
 
-  runTyping();
+  async function waitForFonts() {
+  if (document.fonts && document.fonts.ready) {
+    await document.fonts.ready;
+  }
+}
+
+async function startPageTyping() {
+  await waitForFonts();
+
+  await runTyping();
 
   document.querySelectorAll('.type').forEach(el => {
     const text = el.dataset.text;
     let i = 0;
-    function type(){
-      if(i < text.length){
+    el.textContent = '';
+
+    function type() {
+      if (i < text.length) {
         el.textContent += text.charAt(i);
         i++;
         setTimeout(type, 60);
       }
     }
+
     type();
   });
+}
+
+startPageTyping();
+
 
   // ENQUIRY PANEL
 const enquiryToggle = document.getElementById('enquiryToggle');
