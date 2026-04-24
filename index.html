@@ -363,13 +363,11 @@
     transition: opacity 0.3s ease;
   }
 
-  .hamburger:hover {
-    opacity: 0.6;
-  }
-
   .nav-links {
     position: fixed;
     inset: 0;
+    width: 100vw;
+    height: 100vh;
     background: rgba(234, 228, 218, 0.84);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -379,13 +377,19 @@
     align-items: center;
     gap: 30px;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.45s ease;
     z-index: 10001;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
   }
 
   .nav-links.active {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
@@ -407,12 +411,6 @@
     font-size: 30px;
     line-height: 1;
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .nav-close:hover {
-    opacity: 0.6;
-    transform: rotate(90deg);
   }
 }
 
@@ -514,12 +512,14 @@
 <nav>
   <div>studio rjl</div>
 
- <div class="nav-links" id="navLinks">
-  <a href="index.html">home</a>
-  <a href="#about">about</a>
-  <a href="portfolio.html">recent works</a>
-  <a href="#" id="enquiryToggle">inquire</a>
-  <a href="booking.html">book</a>
+<div class="nav-links" id="navLinks">
+  <button class="nav-close" id="navClose" aria-label="Close menu">×</button>
+  <a href="index.html">Home</a>
+  <a href="#about">About</a>
+  <a href="portfolio.html">Recent works</a>
+  <a href="#" id="enquiryToggle">Inquire</a>
+  <a href="booking.html">Book</a>
+</div>
 
  </div>
   <div class="hamburger" id="hamburger">
