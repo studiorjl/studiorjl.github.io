@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>studio rjl</title>
 
-  <meta name="description" content="Studio RJL is a multidisciplinary design studio specialising in brand and visual identity, creative direction and spatial design.">
+  <meta name="description" content="Studio RJL is a multidisciplinary design studio specialising in branding, visual identity, creative direction and spatial design.">
 
 <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBJDD7VN3N"></script>
@@ -349,9 +349,7 @@
   font-family: 'Courier New', monospace;
 }
 
-/* MOBILE NAV */
 @media (max-width: 768px) {
-
   nav {
     padding: 20px 24px;
     align-items: center;
@@ -359,49 +357,63 @@
 
   .hamburger {
     display: block;
-    font-size: 22px;
+    font-size: 24px;
     cursor: pointer;
     z-index: 10002;
+    transition: opacity 0.3s ease;
   }
 
   .nav-links {
     position: fixed;
     inset: 0;
-    background: rgba(234, 228, 218, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(234, 228, 218, 0.84);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 30px;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.35s ease;
     z-index: 10001;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
   }
 
   .nav-links.active {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
   .nav-links a {
     margin-left: 0;
     display: block;
-    font-size: 18px;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
   }
 
   .nav-close {
     display: block;
     position: absolute;
-    top: 20px;
+    top: 22px;
     right: 24px;
-    font-size: 28px;
+    font-size: 30px;
     line-height: 1;
     cursor: pointer;
   }
-  
+}
+
  /* --- SERVICE OPTIONS (UPDATED) --- */
 .service-options {
   margin-top: 12px;
