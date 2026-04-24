@@ -394,7 +394,91 @@
     letter-spacing: 0.02em;
     text-transform: lowercase;
   }
-  
+}
+
+/* --- SERVICE OPTIONS --- */
+.service-options {
+  margin-top: 12px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  margin-top: 10px;
+  cursor: none;
+  line-height: 1;
+}
+
+.radio:hover span {
+  border-color: var(--hover);
+}
+
+.radio input {
+  display: none;
+}
+
+.radio span {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #261e10;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  transform: translateY(1px);
+}
+
+.radio input:checked + span::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #261e10;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* --- MOBILE INQUIRY PANEL --- */
+@media (max-width: 768px) {
+  .enquiry-panel {
+    width: 100%;
+    right: -100%;
+  }
+
+  .enquiry-panel.active {
+    right: 0;
+  }
+
+  .enquiry-inner {
+    padding: 100px 60px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .enquiry-inner input,
+  .enquiry-inner textarea {
+    margin-bottom: 10px;
+  }
+
+  #about .about {
+    max-width: 34rem;
+  }
+
+  #about .about p {
+    font-size: 11px;
+    line-height: 1.8;
+    text-wrap: pretty;
+  }
+
+  #about .about p br {
+    display: none;
+  }
+}
 
  /* --- SERVICE OPTIONS (UPDATED) --- */
 .service-options {
