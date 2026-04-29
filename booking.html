@@ -163,6 +163,39 @@
   <a href="index.html" class="back-link">← return to studio</a>
 
 </div>
+<script>
+  async function waitForFonts() {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
+  }
+
+  function typeText(el, text, speed = 60) {
+    let i = 0;
+    el.textContent = "";
+
+    function type() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      }
+    }
+
+    type();
+  }
+
+  async function startPageTyping() {
+    await waitForFonts();
+
+    document.querySelectorAll('.type').forEach((el, index) => {
+      const text = el.dataset.text;
+      setTimeout(() => typeText(el, text, 60), index * 400);
+    });
+  }
+
+  startPageTyping();
+</script>
 
 </body>
 </html>
