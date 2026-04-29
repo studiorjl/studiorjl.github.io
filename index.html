@@ -94,15 +94,27 @@
       backdrop-filter:blur(6px); z-index:10;
     }
 
-    nav div:first-child { color: var(--gold); }
+   nav > a:first-child {
+  color: var(--gold);
+  text-decoration: none;
+}
 
-    nav a { text-decoration:none; color:var(--text); margin-left:24px; }
-    nav a:hover { color:var(--hover); text-decoration:underline; }
+nav > a:first-child:hover {
+  color: var(--hover);
+  text-decoration: none;
+}
 
-    .hero {
-      height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
-      padding: 0 20px;
-    }
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  margin-left: 24px;
+}
+
+nav a:hover {
+  color: var(--hover);
+  text-decoration: underline;
+}
+
 
     .hero-inner { transform: translateY(-30px); }
 
@@ -575,10 +587,9 @@
 <div class="cursor"></div>
 
 <nav>
-  <div>studio rjl</div>
+  <a href="index.html">studio rjl</a>
 
 <div class="nav-links" id="navLinks">
-  <a href="index.html">Home</a>
   <a href="#about">About</a>
   <a href="portfolio.html">Recent Work</a>
   <a href="#" id="enquiryToggle">Inquire</a>
