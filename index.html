@@ -110,6 +110,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     nav a { text-decoration:none; color:var(--text); margin-left:24px; }
     nav a:hover { color:var(--hover); text-decoration:underline; }
 
+    nav a.nav-inquire {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 6px;
+  background: #451713;
+  color: #e0dad1;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+nav a.nav-inquire:hover {
+  background: #7f5a29;
+  color: #e0dad1;
+  text-decoration: none;
+}
+
     .hero {
       height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
       padding: 0 20px;
@@ -596,8 +611,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="nav-links" id="navLinks">
   <a href="#about">About</a>
   <a href="portfolio.html">Recent Work</a>
-  <a href="#" id="enquiryToggle">Inquire</a>
   <a href="booking.html">Book</a>
+  <a href="#" id="enquiryToggle" class="nav-inquire">Inquire</a>
+ 
 </div>
 
  </div>
