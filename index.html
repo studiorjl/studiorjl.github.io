@@ -801,40 +801,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     link.addEventListener('mouseleave', () => cursor.classList.remove('link-hover'));
   });
 
+function startRevealObserver() {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
   });
 
-  document.querySelectorAll('.project').forEach(p => observer.observe(p));
-  observer.observe(document.querySelector('.about-image img'));
+  document.querySelectorAll('.project, .about-image img').forEach(el => {
+    observer.observe(el);
+  });
+}
 
-  function typeText(el, text, speed=60) {
-    return new Promise(resolve => {
-      let i = 0;
-      function typing() {
-        if (i < text.length) {
-          el.textContent += text.charAt(i);
-          i++;
-          setTimeout(typing, speed);
-        } else {
-          resolve();
-        }
-      }
-      typing();
-    });
-  }
+async function typeAllHeadings() {
+  const headings = document.querySelectorAll('.type');
 
-  async function runTyping() {
-    await typeText(document.getElementById('type1'), 'design studio');
-    await typeText(document.getElementById('type2'), 'crafting bespoke brandscapes');
-    await typeText(document.getElementById('type3'), 'that resonate.');
-  }
-
-  async function waitForFonts() {
-  if (document.fonts && document.fonts.ready) {
-    await document.fonts.ready;
+  for (const el of headings) {
+    const text = el.dataset.text;
+    el.textContent = '';
+    await typeText(el, text);
   }
 }
 
@@ -842,22 +829,9 @@ async function startPageTyping() {
   await waitForFonts();
 
   await runTyping();
+  await typeAllHeadings();
 
-  document.querySelectorAll('.type').forEach(el => {
-    const text = el.dataset.text;
-    let i = 0;
-    el.textContent = '';
-
-    function type() {
-      if (i < text.length) {
-        el.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, 60);
-      }
-    }
-
-    type();
-  });
+  startRevealObserver();
 }
 
 startPageTyping();
