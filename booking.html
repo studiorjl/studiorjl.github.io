@@ -158,31 +158,43 @@
     This call is designed to bring clarity, direction and a strong next step.
   </p>
 
-  <iframe
-  data-src="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0MBxtDccYFfgN_GFlpT0uKReKg6tT77itlql8P3FYlpj9yTO84euJmikEFJSvAJy88fNNJgT3t">
-</iframe>
+  <iframe src="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0MBxtDccYFfgN_GFlpT0uKReKg6tT77itlql8P3FYlpj9yTO84euJmikEFJSvAJy88fNNJgT3t"></iframe>
 
   <a href="index.html" class="back-link">← return to studio</a>
 
 </div>
 <script>
-async function startPageTyping() {
-  await waitForFonts();
-
-  const headings = document.querySelectorAll('.type');
-
-  for (const el of headings) {
-    const text = el.dataset.text;
-    await typeText(el, text, 60);
+  async function waitForFonts() {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
   }
 
-  const iframe = document.querySelector('iframe[data-src]');
-  if (iframe) {
-    iframe.src = iframe.dataset.src;
-  }
-}
+  function typeText(el, text, speed = 60) {
+    let i = 0;
+    el.textContent = "";
 
-startPageTyping();
+    function type() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      }
+    }
+
+    type();
+  }
+
+  async function startPageTyping() {
+    await waitForFonts();
+
+    document.querySelectorAll('.type').forEach((el, index) => {
+      const text = el.dataset.text;
+      setTimeout(() => typeText(el, text, 60), index * 400);
+    });
+  }
+
+  startPageTyping();
 </script>
 
 </body>
